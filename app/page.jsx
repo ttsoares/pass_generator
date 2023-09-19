@@ -7,17 +7,17 @@ import CheckBox from "@/components/checkBox";
 import passGenerator from "@/utils/PassGen";
 
 import React, { useState } from "react";
-import Image from "next/image";
 
 const zxcvbn = require("zxcvbn");
 
-import Slider from "react-input-slider";
+import ReactSlider from "react-slider";
 
 //---------------------------------
 export default function Home() {
   const [genPass, setGenPass] = useState("P4$5W0rD!");
   const [passStrengh, setPassStrengh] = useState(0);
-  const [chars, setChars] = useState({ x: 8 });
+  //const [chars, setChars] = useState({ x: 8 });
+  const [value, setValue] = useState(0);
   const [features, setFeatures] = useState([
     { type: "minuscules", actv: false },
     { type: "maiuscules", actv: false },
@@ -37,7 +37,7 @@ export default function Home() {
   function generate(event) {
     event.preventDefault();
 
-    const number_of_chars = Number(chars.x);
+    const number_of_chars = Number(value);
 
     // Array with only the indexes of features which actv is true
     const array_features_nums = features
@@ -66,7 +66,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center w-full h-full bg-p_vd_gray">
-      <header className="w-[540px]">
+      <header className="w-[38%]">
         <h1 className="py-4 text-2xl font-bold text-center text-p_gray">
           Password Generator
         </h1>
@@ -94,39 +94,28 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="w-[540px] h-[528px] bg-p_d_gray ">
-        <div className="w-full px-7">
-          <div className="flex justify-between w-full p-6">
+      <section className="w-[38%] bg-p_d_gray">
+        <div className="w-full px-6 space-y-6">
+          <div className="flex justify-between w-full my-4">
             <h2 className="text-p_white">Character Lenght</h2>
-            <h2 className="text-xl text-p_neon">{chars?.x} </h2>
+            <h2 className="text-2xl text-p_neon">{value} </h2>
           </div>
 
-          <div className="w-full px-4 py-6 text-center">
-            <Slider
-              axis="x"
-              xstep={1}
-              xmin={3}
-              xmax={20}
-              x={chars.x}
-              onChange={({ x }) => setChars({ x: parseFloat(x) })}
-              styles={{
-                track: {
-                  backgroundColor: "#18171F",
-                  width: 450,
-                },
-                active: {
-                  backgroundColor: "#A4FFAF",
-                },
-                thumb: {
-                  width: 30,
-                  height: 30,
-                  backgroundColor: "#ffffff",
-                  border: "solid 2px #A4FFAF",
-                },
+          <div className="w-full">
+            <ReactSlider
+              step={1}
+              min={3}
+              max={16}
+              className="horizontal-slider w-full h-8 m-auto"
+              thumbClassName="absolute w-7 h-7 cursor-grab bg-white rounded-full focus:outline-none mt-3 focus:ring-2 focus:ring-p_neon focus:bg-p_vd_gray"
+              trackClassName="example-track"
+              value={value}
+              onChange={(value) => {
+                setValue(value);
               }}
             />
           </div>
-          <form className="space-y-3" onSubmit={generate}>
+          <form className="" onSubmit={generate}>
             <CheckBox
               name="maiuscules"
               title="Include Uppercase Letter"
@@ -151,7 +140,7 @@ export default function Home() {
               handleChange={handleChange}
             />
 
-            <div className="flex items-center justify-between w-full bg-p_vd_gray">
+            <div className="flex items-center justify-between w-full bg-p_vd_gray my-10 p-2">
               <h2 className="p-4 text-p_gray">STRENGTH</h2>
 
               <SecLevel strengh={passStrengh} />
@@ -159,7 +148,7 @@ export default function Home() {
 
             <button
               type="submit"
-              className="flex items-center justify-center w-full p-6 space-x-5 font-bold text-center border-2 hover:fill-p_neon hover:text-p_neon border-p_neon bg-p_neon hover:bg-p_d_gray text-p_vd_gray"
+              className="flex items-center justify-center w-full p-5 space-x-5 font-bold text-center border-2 hover:fill-p_neon hover:text-p_neon border-p_neon bg-p_neon hover:bg-p_d_gray text-p_vd_gray mb-6"
             >
               <h2>GENERATE</h2>
 

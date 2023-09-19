@@ -1,9 +1,16 @@
 import React from "react";
 
 const Sec_Lvl = ["", "TOO WEAK!", "WEAK", "MEDIUM", "STRONG"];
-
 const colors = ["bg-p_red", "bg-p_orange", "bg-p_yellow", "bg-p_neon"];
 
+/**
+ * @typedef Props
+ * @prop {number} strengh
+ */
+
+/**
+ * @param {Props} props
+ */
 const SecLevel = ({ strengh }) => {
   const color = colors[strengh - 1];
 
