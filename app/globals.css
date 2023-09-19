@@ -2,35 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.example-thumb {
-  cursor: pointer;
-  position: absolute;
-  z-index: 100;
-  background: white;
-  border: 3px solid #a3ffae;
-  border-radius: 100%;
-  display: block;
-  /* box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%); */
-  padding: 10px;
-}
-.example-thumb.active {
-  background-color: #23222a;
-}
-
-.horizontal-slider {
-  width: 100%;
-  max-width: 500px;
-  height: 50px;
-}
-
 .example-track {
   position: relative;
-  background: #ddd;
-  padding: 6px;
+  background: #18171f;
+  padding: 4px;
   border-radius: 0.5rem;
 }
 .example-track.example-track-0 {
-  padding: 6px;
+  padding: 4px;
   background: #a3ffae;
   border-radius: 0.5rem;
 }

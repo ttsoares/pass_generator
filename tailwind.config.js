@@ -22,6 +22,15 @@ module.exports = {
         p_d_gray: "hsl(248, 10%, 15%)",
         p_vd_gray: "hsl(248, 15%, 11%)",
       },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.5)" },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 400ms ease-in-out",
+      },
     },
   },
   plugins: [],

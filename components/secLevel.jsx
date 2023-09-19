@@ -16,26 +16,28 @@ const SecLevel = ({ strengh }) => {
 
   return (
     <div className="flex items-center bg-p_vd_gray">
-      <h2 className="p-4 text-white">{Sec_Lvl[strengh]}</h2>
+      <h2 className="p-2 lg:p-4 text-white text-base md:text-2xl">
+        {Sec_Lvl[strengh]}
+      </h2>
       <div
-        className={`w-3 h-8 m-4 ${
-          strengh >= 1 ? `${color}` : ""
-        } border-white mx-2 border-2`}
+        className={`w-3 md:w-3 h-8 m-2 border-2 ${
+          strengh >= 1 ? `${color} border-0` : ""
+        } border-white mx-1 border-2`}
       ></div>
       <div
-        className={`w-3 h-8 m-4 ${
-          strengh >= 2 ? `${color}` : ""
-        } border-white mx-2 border-2`}
+        className={`w-3 md:w-3 h-8 m-2 border-2 ${
+          strengh >= 2 ? `${color} border-0` : ""
+        } border-white mx-1 border-2`}
       ></div>
       <div
-        className={`w-3 h-8 m-4 ${
-          strengh >= 3 ? `${color}` : ""
-        } border-white mx-2 border-2`}
+        className={`w-3 md:w-3 h-8 m-2 border-2 ${
+          strengh >= 3 ? `${color} border-0` : ""
+        } border-white mx-1 border-2`}
       ></div>
       <div
-        className={`w-3 h-8 m-4 ${
-          strengh >= 4 ? `${color}` : ""
-        } border-white mx-2 border-2`}
+        className={`w-3 md:w-3 h-8 m-1 border-2 ${
+          strengh >= 4 ? `${color} border-0` : ""
+        } border-white mx-2 border-2 md:mr-4`}
       ></div>
     </div>
   );

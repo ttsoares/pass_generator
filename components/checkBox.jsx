@@ -4,7 +4,7 @@ import React from "react";
  * @typedef Props
  * @prop {string} name
  * @prop {string} title
- * @prop {()=>void} handleChange
+ * @prop {*} handleChange
  */
 
 /**
@@ -18,7 +18,7 @@ const CheckBox = ({ name, title, handleChange }) => {
           value="false"
           name={name}
           type="checkbox"
-          className="appearance-none peer w-5 h-5 border-white bg-p_d_gray border checked:border-none checked:bg-p_neon "
+          className="appearance-none peer w-5 h-5 border-white hover:border-p_neon bg-p_d_gray border-2 checked:border-none checked:bg-p_neon "
           onChange={handleChange}
         />
         <svg
@@ -34,7 +34,9 @@ const CheckBox = ({ name, title, handleChange }) => {
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </div>
-      <span className="ml-3 text-white">{title}</span>
+      <span className="ml-3 md:ml-6 -mt-2 text-sm md:text-lg text-white">
+        {title}
+      </span>
     </div>
   );
 };

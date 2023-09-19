@@ -1,7 +1,7 @@
 /**
  * Choose the characteres to compose a password
- * @param {Array<number>} groups
- * @param {number} lenght
+ * @param {Array<number>} groups - Arrays with a combination of: 0, 1, 2, 3
+ * @param {number} lenght - lenght of the generated password
  * @returns {string} - A password
  */
 export default function passGenerator(groups, lenght) {

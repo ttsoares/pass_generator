@@ -16,8 +16,10 @@ import ReactSlider from "react-slider";
 export default function Home() {
   const [genPass, setGenPass] = useState("P4$5W0rD!");
   const [passStrengh, setPassStrengh] = useState(0);
-  //const [chars, setChars] = useState({ x: 8 });
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(6);
+  const [effect, setEffect] = useState(false);
+  const [error, setError] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [features, setFeatures] = useState([
     { type: "minuscules", actv: false },
     { type: "maiuscules", actv: false },
@@ -39,7 +41,14 @@ export default function Home() {
 
     const number_of_chars = Number(value);
 
-    // Array with only the indexes of features which actv is true
+    /* array_features_nums
+    Array with only the indexes of 'features' which 'actv' is true
+      { type: "minuscules", actv: false }
+      { type: "maiuscules", actv: true }
+      { type: "numbers", actv: false }
+      { type: "symbols", actv: true }
+    translate to: [1,3]
+    */
     const array_features_nums = features
       .map((elm, index) => {
         if (elm.actv) {
@@ -49,7 +58,8 @@ export default function Home() {
       .filter((elm) => elm != null);
 
     if (array_features_nums.length === 0) {
-      console.log("Error");
+      // No feature was selected !
+      setError(true);
       return;
     }
 
@@ -62,12 +72,17 @@ export default function Home() {
 
   function copyPass() {
     navigator.clipboard.writeText(`${genPass}`);
+    setEffect(true);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 5000);
   }
 
   return (
-    <main className="flex flex-col items-center justify-center w-full h-full bg-p_vd_gray">
-      <header className="w-[38%]">
-        <h1 className="py-4 text-2xl font-bold text-center text-p_gray">
+    <main className="flex flex-col items-center justify-center w-full h-full bg-[#0E0D13]">
+      <header className="w-[90%] lg:w-[38%]">
+        <h1 className="py-4 mb-10 text-2xl font-bold text-center text-p_gray">
           Password Generator
         </h1>
         <div className="flex flex-col items-center justify-center w-full mb-6 h-fit bg-p_d_gray">
@@ -82,7 +97,12 @@ export default function Home() {
               {genPass}
             </h2>
 
-            <div onClick={copyPass}>
+            <div
+              className={`${effect && "animate-wiggle"} flex items-center `}
+              onAnimationEnd={() => setEffect(false)}
+              onClick={copyPass}
+            >
+              {copied && <p className="text-p_neon -mt-1 mr-2">COPIED</p>}
               <svg
                 className="h-8 w-6 fill-current text-p_neon hover:cursor-pointer hover:text-white"
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,11 +114,11 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="w-[38%] bg-p_d_gray">
-        <div className="w-full px-6 space-y-6">
+      <section className="w-[90%] lg:w-[38%] bg-p_d_gray">
+        <div className="w-full px-6 space-y-4">
           <div className="flex justify-between w-full my-4">
-            <h2 className="text-p_white">Character Lenght</h2>
-            <h2 className="text-2xl text-p_neon">{value} </h2>
+            <h2 className="text-p_white mt-2 text-lg">Character Lenght</h2>
+            <h2 className="text-4xl text-p_neon">{value} </h2>
           </div>
 
           <div className="w-full">
@@ -107,7 +127,7 @@ export default function Home() {
               min={3}
               max={16}
               className="horizontal-slider w-full h-8 m-auto"
-              thumbClassName="absolute w-7 h-7 cursor-grab bg-white rounded-full focus:outline-none mt-3 focus:ring-2 focus:ring-p_neon focus:bg-p_vd_gray"
+              thumbClassName="absolute w-6 h-6 cursor-grab bg-white rounded-full focus:outline-none mt-3 focus:ring-2 focus:ring-p_neon focus:bg-p_vd_gray"
               trackClassName="example-track"
               value={value}
               onChange={(value) => {
@@ -115,40 +135,47 @@ export default function Home() {
               }}
             />
           </div>
-          <form className="" onSubmit={generate}>
-            <CheckBox
-              name="maiuscules"
-              title="Include Uppercase Letter"
-              handleChange={handleChange}
-            />
+          <form className={`pt-3`} onSubmit={generate}>
+            <div
+              className={`${error && "animate-wiggle"}`}
+              onAnimationEnd={() => setError(false)}
+            >
+              <CheckBox
+                name="maiuscules"
+                title="Include Uppercase Letter"
+                handleChange={handleChange}
+              />
 
-            <CheckBox
-              name="minuscules"
-              title="Include Lowercase Letters"
-              handleChange={handleChange}
-            />
+              <CheckBox
+                name="minuscules"
+                title="Include Lowercase Letters"
+                handleChange={handleChange}
+              />
 
-            <CheckBox
-              name="numbers"
-              title="Include Numbers"
-              handleChange={handleChange}
-            />
+              <CheckBox
+                name="numbers"
+                title="Include Numbers"
+                handleChange={handleChange}
+              />
 
-            <CheckBox
-              name="symbols"
-              title="Include Symbols"
-              handleChange={handleChange}
-            />
+              <CheckBox
+                name="symbols"
+                title="Include Symbols"
+                handleChange={handleChange}
+              />
+            </div>
 
             <div className="flex items-center justify-between w-full bg-p_vd_gray my-10 p-2">
-              <h2 className="p-4 text-p_gray">STRENGTH</h2>
+              <h2 className="lg:p-4 text-p_gray text-base md:text-xl">
+                STRENGTH
+              </h2>
 
               <SecLevel strengh={passStrengh} />
             </div>
 
             <button
               type="submit"
-              className="flex items-center justify-center w-full p-5 space-x-5 font-bold text-center border-2 hover:fill-p_neon hover:text-p_neon border-p_neon bg-p_neon hover:bg-p_d_gray text-p_vd_gray mb-6"
+              className="flex items-center justify-center w-full p-5 space-x-5 font-bold text-lg text-center border-2 hover:fill-p_neon hover:text-p_neon border-p_neon bg-p_neon hover:bg-p_d_gray text-p_vd_gray mb-6"
             >
               <h2>GENERATE</h2>
 
