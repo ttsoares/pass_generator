@@ -43,6 +43,7 @@ export default function Home() {
 
     /* array_features_nums
     Array with only the indexes of 'features' which 'actv' is true
+      Example:
       { type: "minuscules", actv: false }
       { type: "maiuscules", actv: true }
       { type: "numbers", actv: false }
@@ -102,9 +103,9 @@ export default function Home() {
               onAnimationEnd={() => setEffect(false)}
               onClick={copyPass}
             >
-              {copied && <p className="text-p_neon -mt-1 mr-2">COPIED</p>}
+              {copied && <p className="mr-2 -mt-1 text-p_neon">COPIED</p>}
               <svg
-                className="h-8 w-6 fill-current text-p_neon hover:cursor-pointer hover:text-white"
+                className="w-6 h-8 fill-current text-p_neon hover:cursor-pointer hover:text-white"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M20.341 3.091 17.909.659A2.25 2.25 0 0 0 16.319 0H8.25A2.25 2.25 0 0 0 6 2.25V4.5H2.25A2.25 2.25 0 0 0 0 6.75v15A2.25 2.25 0 0 0 2.25 24h10.5A2.25 2.25 0 0 0 15 21.75V19.5h3.75A2.25 2.25 0 0 0 21 17.25V4.682a2.25 2.25 0 0 0-.659-1.591ZM12.469 21.75H2.53a.281.281 0 0 1-.281-.281V7.03a.281.281 0 0 1 .281-.281H6v10.5a2.25 2.25 0 0 0 2.25 2.25h4.5v1.969a.282.282 0 0 1-.281.281Zm6-4.5H8.53a.281.281 0 0 1-.281-.281V2.53a.281.281 0 0 1 .281-.281H13.5v4.125c0 .621.504 1.125 1.125 1.125h4.125v9.469a.282.282 0 0 1-.281.281Zm.281-12h-3v-3h.451c.075 0 .147.03.2.082L18.667 4.6a.283.283 0 0 1 .082.199v.451Z" />
@@ -117,7 +118,7 @@ export default function Home() {
       <section className="w-[90%] lg:w-[38%] bg-p_d_gray">
         <div className="w-full px-6 space-y-4">
           <div className="flex justify-between w-full my-4">
-            <h2 className="text-p_white mt-2 text-lg">Character Lenght</h2>
+            <h2 className="mt-2 text-lg text-p_white">Character Lenght</h2>
             <h2 className="text-4xl text-p_neon">{value} </h2>
           </div>
 
@@ -126,7 +127,7 @@ export default function Home() {
               step={1}
               min={3}
               max={16}
-              className="horizontal-slider w-full h-8 m-auto"
+              className="w-full h-8 m-auto horizontal-slider"
               thumbClassName="absolute w-6 h-6 cursor-grab bg-white rounded-full focus:outline-none mt-3 focus:ring-2 focus:ring-p_neon focus:bg-p_vd_gray"
               trackClassName="example-track"
               value={value}
@@ -165,8 +166,8 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex items-center justify-between w-full bg-p_vd_gray my-10 p-2">
-              <h2 className="lg:p-4 text-p_gray text-base md:text-xl">
+            <div className="flex items-center justify-between w-full p-2 my-10 bg-p_vd_gray">
+              <h2 className="text-base lg:p-4 text-p_gray md:text-xl">
                 STRENGTH
               </h2>
 
@@ -175,7 +176,7 @@ export default function Home() {
 
             <button
               type="submit"
-              className="flex items-center justify-center w-full p-5 space-x-5 font-bold text-lg text-center border-2 hover:fill-p_neon hover:text-p_neon border-p_neon bg-p_neon hover:bg-p_d_gray text-p_vd_gray mb-6"
+              className="flex items-center justify-center w-full p-5 mb-6 space-x-5 text-lg font-bold text-center border-2 hover:fill-p_neon hover:text-p_neon border-p_neon bg-p_neon hover:bg-p_d_gray text-p_vd_gray"
             >
               <h2>GENERATE</h2>
 

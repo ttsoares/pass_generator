@@ -18,7 +18,7 @@ const CheckBox = ({ name, title, handleChange }) => {
           value="false"
           name={name}
           type="checkbox"
-          className="appearance-none peer w-5 h-5 border-white hover:border-p_neon bg-p_d_gray border-2 checked:border-none checked:bg-p_neon "
+          className="w-5 h-5 border-2 border-white appearance-none peer hover:border-p_neon bg-p_d_gray checked:border-none checked:bg-p_neon "
           onChange={handleChange}
         />
         <svg
@@ -27,14 +27,14 @@ const CheckBox = ({ name, title, handleChange }) => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </div>
-      <span className="ml-3 md:ml-6 -mt-2 text-sm md:text-lg text-white">
+      <span className="ml-3 -mt-2 text-sm text-white md:ml-6 md:text-lg">
         {title}
       </span>
     </div>
